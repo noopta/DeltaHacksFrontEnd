@@ -42,10 +42,10 @@ class Speech extends Component {
     counter : 0,
       numbers: [],
       ah: 0,
-      um: 0,
-      like: 3,
-      uh: 0,
-      er: 0,
+      basically: 0,
+      like: 0,
+      stuff: 0,
+      got: 0,
       score: 0,
       listening: false,
       checked: true,
@@ -143,18 +143,19 @@ toggleClose(){
         `http://shesan.pythonanywhere.com/stats`,
         {
             "speechtext":finalTranscript,
-            "keywords": ["um", "uh","er", "ah","like"]
+            "keywords": ["basically", "stuff","got", "ah","like"]
         },
       );
 
       this.setState({
         ah: res.data.keywordcount.ah,
-        um: res.data.keywordcount.um,
+        basically: res.data.keywordcount.basically,
         like: res.data.keywordcount.like,
-        er: res.data.keywordcount.er,
-        uh: res.data.keywordcount.uh,
+        got: res.data.keywordcount.got,
+        stuff: res.data.keywordcount.stuff,
         mood: res.data.sentimentscore,
       })
+
       console.log(res);
       
 console.log(finalTranscript);
@@ -258,7 +259,7 @@ console.log(finalTranscript);
           {...(this.state.checked ? { timeout: 1000 } : {})}
                 >
          
-            <Slider word = "Um" count  = {this.state.um}/>
+            <Slider word = "Basically" count  = {this.state.basically}/>
 
             </Grow>
             <Grow
@@ -274,7 +275,7 @@ console.log(finalTranscript);
           style={{ transformOrigin: '0 0 0' }}
           {...(this.state.checked ? { timeout: 3000 } : {})}
                 >
-                     <Slider word = "Ah" count  = {this.state.ah}/>
+                     <Slider word = "Stuff" count  = {this.state.stuff}/>
          {/**    <li>Ah: {this.state.ah}</li>*/}
             </Grow>
             <Grow
@@ -282,7 +283,7 @@ console.log(finalTranscript);
           style={{ transformOrigin: '0 0 0' }}
           {...(this.state.checked ? { timeout: 4000 } : {})}
                 >
-                     <Slider word = "Er" count  = {this.state.er}/>
+                     <Slider word = "Got" count  = {this.state.got}/>
           {/**    <li>Er: {this.state.er}</li> */}
             </Grow>
             <Grow
@@ -290,7 +291,7 @@ console.log(finalTranscript);
           style={{ transformOrigin: '0 0 0' }}
           {...(this.state.checked ? { timeout: 5000 } : {})}
                 >
-               <Slider word = "Uh" count  = {this.state.er} />
+               <Slider word = "Ah" count  = {this.state.ah} />
             {/** <li>Uh: {this.state.uh}</li> */}
              </Grow>
 
